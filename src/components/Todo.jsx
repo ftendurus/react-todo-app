@@ -1,12 +1,15 @@
 import React from 'react'
 
-function Todo() {
+function Todo({text,todos,setTodos,todo}) {
+    const deleteHandler = () => {
+        setTodos(todos.filter((eL) => eL.id !== todo.id))
+    }
     return (
-        <div class="todo">
-            <button class="complete-btn">
-                <i class="fas fa-check-circle"></i>
-            </button><li class="todo-item">dsad</li>
-            <button class="trash-btn"><i class="fa fa-minus-circle"></i>
+        <div className="todo">
+            <button className="complete-btn">
+                <i className="fas fa-check-circle"></i>
+            </button><li className="todo-item" >{text}</li>
+            <button className="trash-btn" onClick={deleteHandler}><i className="fa fa-minus-circle"></i>
             </button></div>
     )
 }

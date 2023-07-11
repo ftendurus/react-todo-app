@@ -1,23 +1,23 @@
 import React from 'react'
+import Todo from './Todo'
 
-function TodoList() {
+function TodoList({todos, setTodos}) {
     return (
-        <ul class="todo-list">
-            <div class="todo completed" style="display: flex;">
-                <button class="complete-btn">
-                    <i class="fas fa-check-circle"></i>
-                </button><li class="todo-item">dsa</li>
-                <button class="trash-btn">
-                    <i class="fa fa-minus-circle">
-                    </i></button></div><div class="todo">
-                <button class="complete-btn">
-                    <i class="fas fa-check-circle"></i>
-                </button><li class="todo-item">dsad</li>
-                <button class="trash-btn">
-                    <i class="fa fa-minus-circle"></i>
-                </button>
-            </div>
-        </ul>)
+    <div className='todo-container'>
+        <ul className="todo-list">
+            {todos.map((todo)=> (            
+            <Todo text = {todo.text}
+            todo = {todo}
+            keys = {todo.id}
+            todos = {todos}
+            setTodos = {setTodos}
+            />
+                
+            ))}
+
+        </ul>
+        </div>)
+        
 }
 
 export default TodoList
