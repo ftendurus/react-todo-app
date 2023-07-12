@@ -13,21 +13,35 @@ function Form({ inputText, setInputText, todos, setTodos,setStatus }) {
 
     }
 
+
     const submitTodoHandler = (e) => {
         e.preventDefault();
 
-        const isEmpty = str => !str.trim().length;
+        const isEmpty = str => str.length;
 
-        if (isEmpty(inputText)){
+        if (isEmpty(inputText)===0){
             setAlertWarning(true);
+            setTimeout(() => {
+                setAlertWarning(false);
+            }, 1000);
+        }
+        else{setAlertWarning(false);
+            setTodos([
+                ...todos,
+                {text: inputText, completed: false, id: Math.random()}
+            ]);
+            setAlertSuccess(true);
+
+            setTimeout(() => {
+                setAlertSuccess(false);
+
+            }, 1000);
+           
         }
 
-        
+            
 
-        setTodos([
-            ...todos,
-            {text: inputText, completed: false, id: Math.random()}
-        ]);
+        
         console.log(todos);
         setInputText("")
     }
@@ -49,14 +63,17 @@ function Form({ inputText, setInputText, todos, setTodos,setStatus }) {
                 <option value="uncompleted">Uncompleted</option>
             </select>
         </div>
-        
+
         <div className="alert-wrapper">
-        <div className="alert-success">
-            <div>Ekleme Başarılı.</div>
-        </div>
-        <div className="alert-warning">
+        {alertWarning ?  <div className="alert-warning">
             <div>Input alanı boş geçilemez!</div>
-        </div>
+        </div> : ""},
+        {alertSuccess ? <div class="alert-success">
+            <div>Ekleme Başarılı.</div>
+        </div>: ""}
+        
+        
+        
     </div>
 
     </form>

@@ -139,7 +139,7 @@ select {
 /*! alert css */
 .alert-wrapper {
   position: absolute;
-  bottom: 10%;
+  bottom: -250%;
   right: 0;
 }
 
@@ -150,7 +150,7 @@ select {
   font-weight: bold;
   width: 25rem;
   text-align: center;
-  display: none;
+  
 }
 
 .alert-warning {

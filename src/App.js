@@ -2,6 +2,7 @@ import './App.css';
 import Form from './components/Form';
 import React, { useState ,useEffect} from 'react';
 import TodoList from './components/TodoList';
+
 function App() {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
@@ -9,9 +10,15 @@ function App() {
   const [filteredTodos, setfilteredTodos] = useState([]);
 
   useEffect(() => {
+    getLocalTodos();
+  }, [])
+  
+
+  useEffect(() => {
     filterHandler(todos);
+    saveLocalTodos();
     }
-  , [todos, status])
+  , [todos, status]) //eslint-disable-line
   
 
   const filterHandler=()=>{
@@ -28,9 +35,28 @@ function App() {
     }
   }
 
+//! save to local
+
+const saveLocalTodos = () => {
+  if(todos.length !== 0){        //this line is new
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }   
+  } //eslint-disable-next-line
+
+  const getLocalTodos = () => {
+    if(localStorage.getItem("todos") === null){
+      localStorage.setItem("todos", JSON.stringify([]));
+    }else {
+      let todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal)
+    }
+  }//eslint-disable-line
+
   return (
     <div className="App">
       <header><h1>MY TODO LIST</h1></header>
+
+
       <Form
         inputText={inputText}
         setInputText={setInputText}
