@@ -38,7 +38,7 @@ function App() {
 //! save to local
 
 const saveLocalTodos = () => {
-  if(todos.length !== 0){        //this line is new
+  if(todos.length !== 0){        
     localStorage.setItem("todos", JSON.stringify(todos))
   }   
   } //eslint-disable-next-line
