@@ -3,10 +3,12 @@ import React from 'react'
 function Todo({text,todos,setTodos,todo}) {
     const deleteHandler = () => {
         if(todos.length === 1){
-            setTodos([]);
+            localStorage.clear("todos");
+            setTodos(todos.filter((eL) => eL.id !== todo.id));
+
         }
-        else{setTodos(todos.filter((eL) => eL.id !== todo.id));}
-        
+        else{
+        setTodos(todos.filter((eL) => eL.id !== todo.id));}
     }
 
     const completeHandler = () => {
